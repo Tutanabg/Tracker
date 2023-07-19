@@ -1,0 +1,92 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" style="color:white;">Employee Manager</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarColor02">
+     <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+           <a class="nav-link" (click)="onOpenModal(null, 'add')">Add Employee <span class="sr-only">(current)</span></a>
+        </li>
+     </ul>
+     <form class="form-inline my-2 my-lg-0">
+        <input type="search" (ngModelChange)="searchEmployees(key.value)" #key="ngModel" ngModel
+         name="key" id="searchName" class="form-control mr-sm-2" placeholder="Search employees..." required>
+     </form>
+  </div>
+</nav>
+    
+    <h2> {{greetings}}</h2>
+    <br>
+    <br>
+    <button (click) = "getTask()">Show All Tasks</button>
+
+    <ul *ngFor = "let task of tasks">
+      
+      <li>{{ task.tracker_id }} </li>
+      <li>{{ task.text }}</li>
+      <li>{{ task.task_day }}</li>
+      <li>{{ task.reminder }}</li>
+      <button (click) = "updateTask(task, task.tracker_id)">Edit</button>
+      <button>Delete</button>
+    </ul>
+  
+  <!--Add Task-->
+    <div class="row" aria-hidden="true">
+      <div class="col-sm-6, col-md-6">
+      <h2>Task Registration</h2>
+      <form #addForm="ngForm" (ngSubmit)="addTask(addForm)" aria-hidden="true">
+          <div class="form-group">
+            <label for="text">Text</label>
+            <input type="text" ngModel name="text" class="form-control" id="text">                             
+          </div>
+          <div class="form-group">
+            <label for="day">Day</label>
+            <input type="text" ngModel name="day" class="form-control" id="day">                             
+          </div>
+          <div class="form-group">
+            <label for="reminder">Reminder</label>
+            <input type="text" ngModel name="reminder" class="form-control" id="reminder">                        
+          </div>
+          <button type="submit" class="btn btn-success">Submit</button>
+          </form>
+          <div class="row"> 
+            <div class="col-sm-6, col-md-6">
+              <div class="alert alert-info" *ngIf=isAdded>
+                <p>Task Added SuccessFully!</p>
+                <button class="btn btn-primary" (click)="resetUserForm()">Add another Task</button>
+              </div>
+            </div>  
+          </div>
+      </div>
+  </div>
+
+  <!--Edit Task-->
+  <!-- <div class="row" aria-hidden="true">
+    <div class="col-sm-6, col-md-6">
+    <form #updateForm="ngForm" (ngSubmit)="addTask(addForm)" aria-hidden="true">
+      <input type="hidden" ngModel={{editTask.id}} name="id" class="form-control" id="id">
+        <div class="form-group">
+          <label for="text">Text</label>
+          <input type="text" ngModel={{editTask.text}} name="text" class="form-control" id="text">                             
+        </div>
+        <div class="form-group">
+          <label for="day">Day</label>
+          <input type="text" ngModel={{editTask.text}} name="day" class="form-control" id="day">                             
+        </div>
+        <div class="form-group">
+          <label for="reminder">Reminder</label>
+          <input type="text" ngModel={{editTask.reminder}} name="reminder" class="form-control" id="reminder">                        
+        </div>
+        <button (click)="updateTask(updateForm.value)" class="btn btn-success">Save</button>
+        </form>
+        <div class="row"> 
+          <div class="col-sm-6, col-md-6">
+            <div class="alert alert-info" *ngIf=isAdded>
+              <p>Task Added SuccessFully!</p>
+              <button class="btn btn-primary" (click)="resetUserForm()">Add another Task</button>
+            </div>
+          </div>  
+        </div>
+    </div>
+</div> -->
