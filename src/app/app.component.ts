@@ -13,7 +13,7 @@ export class AppComponent implements OnInit{
   constructor(private taskService: TaskService) { }
 
   tasks: Task[];
-  greetings = "Welcome to Tasks Management Page!!!";
+  greetings = "Welcome to Tasks Management Page!!";
   task: Task;
   isAdded = false;
   taskForm: FormGroup;  
